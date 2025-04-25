@@ -1,0 +1,84 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/a.exe", // Replace this with your actual executable path
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/path/to/gdb.exe", // Replace with the actual path to your gdb executable
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/a.exe", // Replace this with your actual executable path
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/path/to/gdb.exe", // Replace with the actual path to your gdb executable
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) WSL Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/a.out", // For Linux/WSL
+            "processId": "${command:pickRemoteProcess}",
+            "MIMode": "gdb",
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "${env:windir}\\system32\\wsl.exe",
+                "pipeArgs": [],
+                "pipeCwd": "${workspaceFolder}"
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
